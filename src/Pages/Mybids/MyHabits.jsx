@@ -13,10 +13,18 @@ const MyHabits = () => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure.get(`/habit?email=${user?.email}`).then((data) => {
-      setHabit(data.data);
-    });
-  }, [user, axiosSecure]);
+    const storedHabits = localStorage.getItem("habits");
+    if (storedHabits) {
+      setHabit(JSON.parse(storedHabits));
+      console.log("fetched form local storage");
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   axiosSecure.get(`/habit?email=${user?.email}`).then((data) => {
+  //     setHabit(data.data);
+  //   });
+  // }, [user, axiosSecure]);
 
   const handleComplete = (id) => {
     axiosSecure.patch(`/habit/${id}`).then((res) => {
@@ -46,27 +54,42 @@ const MyHabits = () => {
     const time = e.target.time.value;
     const category = e.target.category.value;
     const visibility = e.target.visibility.value;
-    const updatedData = {
-      title,
-      description,
-      time,
-      category,
-      visibility,
-    };
+    // const updatedData = {
+    //   title,
+    //   description,
+    //   time,
+    //   category,
+    //   visibility,
+    // };
     const id = EditableHabit._id;
-    axiosSecure.patch(`/habit/${id}`, updatedData).then((res) => {
-      if (res.data.modifiedCount) {
-        closeModal();
-        toast.success("UpdatedSuccessFully!");
-        setHabit((prev) =>
-          prev.map((h) =>
-            h._id === id
-              ? { ...h, title, description, time, category, visibility }
-              : h
-          )
-        );
-      }
-    });
+    // axiosSecure.patch(`/habit/${id}`, updatedData).then((res) => {
+    //   if (res.data.modifiedCount) {
+    //     closeModal();
+    //     toast.success("UpdatedSuccessFully!");
+    //     setHabit((prev) =>
+    //       prev.map((h) =>
+    //         h._id === id
+    //           ? { ...h, title, description, time, category, visibility }
+    //           : h
+    //       )
+    //     );
+    //   }
+    // });
+    try {
+      const updatedHabits = habit.map((h) =>
+        h._id === id
+          ? { ...h, title, description, time, category, visibility }
+          : h
+      );
+      setHabit(updatedHabits);
+      localStorage.setItem("habits", JSON.stringify(updatedHabits));
+      closeModal();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update habit. Please try again.");
+    } finally {
+      toast.success("Updated SuccessFully!");
+    }
   };
 
   const deleteHabit = (id) => {
@@ -80,15 +103,23 @@ const MyHabits = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`habit/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            setHabit((prev) => prev.filter((h) => h._id !== id));
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-          }
+        // axiosSecure.delete(`habit/${id}`).then((res) => {
+        //   if (res.data.deletedCount > 0) {
+        //     setHabit((prev) => prev.filter((h) => h._id !== id));
+        //     Swal.fire({
+        //       title: "Deleted!",
+        //       text: "Your file has been deleted.",
+        //       icon: "success",
+        //     });
+        //   }
+        // });
+        const updatedHabits = habit.filter((h) => h._id !== id);
+        setHabit(updatedHabits);
+        localStorage.setItem("habits", JSON.stringify(updatedHabits));
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your habit has been deleted.",
+          icon: "success",
         });
       }
     });
@@ -273,7 +304,9 @@ const MyHabits = () => {
           </dialog>
         </>
       ) : (
-        <span>No habit found</span>
+        <p className="text-2xl font-medium text-center mt-[calc(50vh-60px)]">
+          No Habit Found!
+        </p>
       )}
     </div>
   );

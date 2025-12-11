@@ -5,11 +5,10 @@ import useAxiosSecure from "../../Hook/useSecureAxios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
-
 const AddHabits = () => {
   const { user } = UseAuth();
-  const axiosSecure=useAxiosSecure();
-  const navigate=useNavigate()
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const handleHabit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -19,17 +18,21 @@ const AddHabits = () => {
     const file = e.target.file.files[0];
     const time = e.target.time.value;
     const category = e.target.category.value;
-    const visibility=e.target.visibility.value;
+    const visibility = e.target.visibility.value;
     const formData = new FormData();
     formData.append("image", file);
-      toast.success("Adding Habit....")
-  
-    const result = await axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${ import.meta.env.VITE_imgBB}`
-     ,
-      formData
-    );
-    const photoURL = result.data.data.display_url;
+    toast.success("Adding Habit....");
+
+    // const result = await axios.post(
+    //   `https://api.imgbb.com/1/upload?expiration=600&key=${
+    //     import.meta.env.VITE_imgBB
+    //   }`,
+    //   formData
+    // );
+    const result = "";
+    const photoURL = result?.data?.data?.display_url || "";
     const newHabit = {
+      _id: Date.now(),
       name,
       email,
       title,
@@ -39,20 +42,30 @@ const AddHabits = () => {
       time,
       visibility,
       createdAt: new Date().toISOString(),
-      streak:0,
-      status:0,
+      streak: 0,
+      status: 0,
     };
-   
 
-    axiosSecure.post("/habit",newHabit)
-    .then((data)=>{
-      if(data.data.insertedId)
-      {
-        toast.success("Habit added Successfully!")
-        e.target.reset();
-        navigate("/myHabit")
-      }
-    })
+    try {
+      //? Using local storage for now
+      const existingHabits = JSON.parse(localStorage.getItem("habits") || "[]");
+      existingHabits.push(newHabit);
+      localStorage.setItem("habits", JSON.stringify(existingHabits));
+
+      // axiosSecure.post("/habit", newHabit).then((data) => {
+      //   if (data.data.insertedId) {
+      //     e.target.reset();
+      //     navigate("/myHabit");
+      //   }
+      // });
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add habit. Please try again.");
+    } finally {
+      toast.success("Habit Added Successfully!");
+      e.target.reset();
+      navigate("/myHabit");
+    }
   };
   return (
     <div>
@@ -125,7 +138,11 @@ const AddHabits = () => {
             <div className="flex-1 space-y-2">
               <label className="label">Remainder</label>
               <br />
-              <input type="time" name="time" className="focus:outline-none input w-full" />
+              <input
+                type="time"
+                name="time"
+                className="focus:outline-none input w-full"
+              />
             </div>
           </div>
           <div className="flex gap-5">
@@ -159,7 +176,7 @@ const AddHabits = () => {
             </div>
           </div>
           <div className="flex justify-center my-3">
-            <button className="btn customBtn"> Add Habit</button>
+            <button className="btn customBtn">Add Habit</button>
           </div>
         </form>
       </div>
