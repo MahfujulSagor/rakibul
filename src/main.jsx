@@ -12,6 +12,6 @@ createRoot(document.getElementById('root')).render(
     <RouterProvider router={router}>
       </RouterProvider>
     </AuthProvider>
-    <Toaster position='top-center'></Toaster>
+    <Toaster position='top-right'></Toaster>
   </StrictMode>,
 )
