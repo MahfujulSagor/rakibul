@@ -7,7 +7,7 @@ const Home = () => {
       <div className="mt-50 flex flex-col gap-6">
         <h2 className="md:text-4xl lg:text-5xl text-3xl font-bold">
           Build the habits that{" "}
-          <span className="bg-linear-to-r from-purple-400 to-red-400 text-transparent bg-clip-text">
+          <span className="bg-linear-to-r from-purple-600 to-red-600 text-transparent bg-clip-text">
             matter!
           </span>
         </h2>

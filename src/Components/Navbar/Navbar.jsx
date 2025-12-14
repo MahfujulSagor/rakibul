@@ -51,7 +51,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"} className="btn btn-ghost text-xl">
-            Habit Tracker
+            <span className="text-transparent bg-linear-to-r from-purple-600 to-red-600 bg-clip-text font-bold">Habit Tracker</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
