@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, NavLink } from "react-router";
 import UseAuth from "../../Hook/UseAuth";
 import person from "../../assets/user.png";

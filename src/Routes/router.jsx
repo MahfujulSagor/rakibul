@@ -7,12 +7,17 @@ import MyHabits from "../Pages/Mybids/MyHabits";
 import AddHabits from "../Pages/AddHabits/AddHabits";
 import PublicHabit from "../Pages/PublicHabit/PublicHabit";
 import Notfound from "../Pages/Notfound/Notfound";
+import Home from "../Pages/Home/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
       {
         path: "/login",
         element: <LogIn></LogIn>,
