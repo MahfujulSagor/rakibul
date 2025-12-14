@@ -3,7 +3,7 @@ import Habit_Tracker from "../../assets/habbit_tracker.jpg";
 
 const Home = () => {
   return (
-    <div className="text-center">
+    <div className="text-center min-h-[calc(100vh-64px)] ">
       <div className="mt-50 flex flex-col gap-6">
         <h2 className="md:text-4xl lg:text-5xl text-3xl font-bold">
           Build the habits that{" "}

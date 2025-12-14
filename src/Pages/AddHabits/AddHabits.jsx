@@ -68,7 +68,7 @@ const AddHabits = () => {
     }
   };
   return (
-    <div>
+    <div className="min-h-[calc(100vh-64px)] ">
       <div className="card max-w-[1000px] mt-10 mx-auto shadow-2xl p-10">
         <form className="fieldset text-lg m-2 space-y-2" onSubmit={handleHabit}>
           <div className="flex flex-col md:flex-row gap-5">

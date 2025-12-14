@@ -125,7 +125,7 @@ const MyHabits = () => {
     });
   };
   return (
-    <div>
+    <div className="min-h-[calc(100vh-64px)]">
       {habit.length > 0 ? (
         <>
           <div className="overflow-x-auto h-full w-full">

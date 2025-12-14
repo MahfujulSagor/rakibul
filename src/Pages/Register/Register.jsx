@@ -49,7 +49,7 @@ const Register = () => {
             navigate("/");
           })
           .catch((err) => toast.error("Something Went Wrong"));
-          
+
       })
       .catch((err) => {
         const msg = err.message
@@ -57,11 +57,11 @@ const Register = () => {
           .replace(").", "");
         toast.error(msg || "Somethings went wrong!");
       });
-  
+
   };
   return (
     <div>
-      <div className="hero min-h-screen">
+      <div className="hero min-h-[calc(100vh-64px)]">
         <div className="hero-content w-full  flex-col lg:flex-row-reverse">
           <div className="card bg-base-100 w-full flex-1 shadow-2xl">
             <div className="card-body">

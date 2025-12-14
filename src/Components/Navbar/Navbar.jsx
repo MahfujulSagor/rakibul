@@ -50,7 +50,7 @@ const Navbar = () => {
               {link}
             </ul>
           </div>
-          <Link to={"/"} className="btn btn-ghost text-xl">
+          <Link to={"/"} className="btn btn-ghost text-2xl">
             <span className="text-transparent bg-linear-to-r from-purple-600 to-red-600 bg-clip-text font-bold">Habit Tracker</span>
           </Link>
         </div>
