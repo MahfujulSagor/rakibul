@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import UseAuth from "../../Hook/UseAuth";
-import useAxiosSecure from "../../Hook/useSecureAxios";
+// import useAxiosSecure from "../../Hook/useSecureAxios";
 import { CircleCheck, CircleX, Edit, FilePenLine, Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const MyHabits = () => {
-  const { user } = UseAuth();
+  // const { user } = UseAuth();
   const [habit, setHabit] = useState([]);
   const ModalRef = useRef(null);
   const [EditableHabit, setEditableHabit] = useState([]);
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const storedHabits = localStorage.getItem("habits");
@@ -27,15 +27,27 @@ const MyHabits = () => {
   // }, [user, axiosSecure]);
 
   const handleComplete = (id) => {
-    axiosSecure.patch(`/habit/${id}`).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        setHabit((prev) =>
-          prev.map((h) =>
-            h._id === id ? { ...h, status: 1, streak: res.data.streak } : h
-          )
-        );
-      }
-    });
+    // axiosSecure.patch(`/habit/${id}`).then((res) => {
+    //   if (res.data.modifiedCount > 0) {
+    //     setHabit((prev) =>
+    //       prev.map((h) =>
+    //         h._id === id ? { ...h, status: 1, streak: res.data.streak } : h
+    //       )
+    //     );
+    //   }
+    // });
+    try {
+      const updatedHabits = habit.map((h) =>
+        h._id === id ? { ...h, status: 1, streak: (h.streak || 0) + 1 } : h
+      );
+      setHabit(updatedHabits);
+      localStorage.setItem("habits", JSON.stringify(updatedHabits));
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to mark habit as complete. Please try again.");
+    } finally {
+      toast.success("Habit marked as complete!");
+    }
   };
 
   const closeModal = () => {
@@ -125,7 +137,7 @@ const MyHabits = () => {
     });
   };
   return (
-    <div className="min-h-[calc(100vh-64px)]">
+    <div className="min-h-screen w-full pt-10">
       {habit.length > 0 ? (
         <>
           <div className="overflow-x-auto h-full w-full">

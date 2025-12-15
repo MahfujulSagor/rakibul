@@ -1,8 +1,8 @@
 
-export const HabbitCard = ({ habit }) => {
+export const HabbitCard = ({ habit, className, listClass}) => {
   return (
-    <ul className="list bg-base-100 rounded-box shadow-md">
-      <li className="list-row min-w-[400px] cursor-pointer border border-gray-200">
+    <ul className={`list bg-base-100 rounded-box shadow-md ${className}`}>
+      <li className={`list-row min-w-[400px] cursor-pointer border border-gray-200 ${listClass}`}>
         <div>
           <img
             className="size-10 rounded-box"

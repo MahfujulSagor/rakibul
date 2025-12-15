@@ -18,7 +18,7 @@ const PublicHabit = () => {
       </div>
       <div className="grid lg:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1 grid-cols-1">
         {habits.map((habit, index) => (
-          <HabbitCard key={index} habit={habit} />
+          <HabbitCard key={index} habit={habit} className={''} />
         ))}
       </div>
     </div>

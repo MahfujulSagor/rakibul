@@ -1,13 +1,13 @@
 import React from "react";
 import UseAuth from "../../Hook/UseAuth";
-import axios from "axios";
-import useAxiosSecure from "../../Hook/useSecureAxios";
+// import axios from "axios";
+// import useAxiosSecure from "../../Hook/useSecureAxios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 const AddHabits = () => {
   const { user } = UseAuth();
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const handleHabit = async (e) => {
     e.preventDefault();
