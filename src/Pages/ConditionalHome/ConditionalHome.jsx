@@ -1,6 +1,6 @@
 import Loading from "../../Components/Loading/Loading";
 import UseAuth from "../../Hook/UseAuth";
-import Home from "../Home/Home";
+import Home from "../HomePublic/HomePublic";
 import HomePrivate from "../HomePrivate/HomePrivate";
 
 const ConditionalHome = () => {

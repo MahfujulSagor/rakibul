@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import Habit_Tracker from "../../assets/habbit_tracker.jpg";
 
-const Home = () => {
+const HomePublic = () => {
   return (
     <div className="text-center min-h-[calc(100vh-64px)] ">
       <div className="mt-50 flex flex-col gap-6">
@@ -25,4 +25,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePublic;
