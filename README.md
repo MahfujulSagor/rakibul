@@ -1,6 +1,6 @@
 # Habit Tracker 🎯
 
-A modern, full-featured habit tracking application built with React, Vite, and Firebase. Track your daily habits, build streaks, and achieve your goals!
+A modern, full-featured habit tracking application built with React, Vite, Firebase and Daisyui. Track your daily habits, build streaks, and achieve your goals!
 
 ## 🌟 Features
 
