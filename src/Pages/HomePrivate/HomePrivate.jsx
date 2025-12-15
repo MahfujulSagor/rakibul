@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import "cally";
 import { HabbitCard } from "../../Components/HabitCard/HabitCard";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import Streaks from "../../Components/Streaks/Streaks";
 
 const HomePrivate = () => {
   const [pendingHabits, setPendingHabits] = useState([]);
@@ -155,7 +156,8 @@ const HomePrivate = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6">
-          <div className="border justify-self-center w-full rounded-box shadow-lg border-base-300 p-4">
+          {/* Statistics */}
+          <div className="border justify-self-center grid grid-cols-1 items-center w-full rounded-box shadow-lg border-base-300 p-4">
             <p className="text-center font-bold text-xl">Statistics</p>
             <div className="relative h-62">
               <ResponsiveContainer width="100%" height="100%">
@@ -181,7 +183,7 @@ const HomePrivate = () => {
                 <p className="text-sm text-gray-600">Completed</p>
               </div>
             </div>
-            <div className="mt-4 space-y-2">
+            <div className="space-y-2">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <span aria-label="status" className="status status-success"></span>
@@ -198,6 +200,11 @@ const HomePrivate = () => {
               </div>
             </div>
           </div>
+          {/* Streaks */}
+          <div className="rounded-box shadow-lg border border-base-300 px-4 py-6">
+            <Streaks completedHabits={completedHabits} />
+          </div>
+          {/* Calendar */}
           <div className="justify-self-center w-full">
             <calendar-date class="cally w-full bg-base-100 border border-base-300 shadow-lg rounded-box">
               <svg

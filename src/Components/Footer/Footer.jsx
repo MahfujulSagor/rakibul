@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <div className="w-full border border-base-300 rounded-box px-4 py-8">
+    <div className="w-full border border-base-300 rounded-box px-4 py-8 mt-10">
       <div className="grid grid-cols-3 items-center w-full px-4">
         <div className="justify-self-start">
           <h2 className="text-2xl font-bold">
