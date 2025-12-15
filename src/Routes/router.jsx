@@ -7,7 +7,7 @@ import MyHabits from "../Pages/Mybids/MyHabits";
 import AddHabits from "../Pages/AddHabits/AddHabits";
 import PublicHabit from "../Pages/PublicHabit/PublicHabit";
 import Notfound from "../Pages/Notfound/Notfound";
-import Home from "../Pages/Home/Home";
+import ConditionalHome from "../Pages/ConditionalHome/ConditionalHome";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <ConditionalHome />,
       },
       {
         path: "/login",
