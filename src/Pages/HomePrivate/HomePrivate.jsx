@@ -184,14 +184,14 @@ const HomePrivate = () => {
             <div className="mt-4 space-y-2">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                  <span aria-label="status" className="status status-success"></span>
                   <span className="text-base">Completed</span>
                 </div>
                 <span className="font-semibold text-base">{completedHabits.length}</span>
               </div>
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                  <span aria-label="status" className="status status-warning"></span>
                   <span className="text-base">Pending</span>
                 </div>
                 <span className="font-semibold text-base">{pendingHabits.length}</span>
